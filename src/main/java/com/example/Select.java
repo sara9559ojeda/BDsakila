@@ -6,13 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.example.utils.DatabaseConnection;
+
 public class Select {
      public static void main(String[] args) throws SQLException{
-        String url = "jdbc:mysql://localhost:3306";
-        String user = "root";
-        String pass = "root";
 
-        try(Connection myConnection = DriverManager.getConnection(url, user,pass);
+        try(Connection myConnection = DatabaseConnection.getInstance();
             Statement myStatement = myConnection.createStatement();
             ResultSet myResultSet = myStatement.executeQuery("Select * from sakila.actor limit 5")
         )  {
