@@ -15,6 +15,7 @@ public class DatabaseConnection {
     public static Connection getInstance()throws SQLException{
         if(myConn == null){
             myConn = DriverManager.getConnection(url, user,pass);
+
         }
         return myConn;
     }
