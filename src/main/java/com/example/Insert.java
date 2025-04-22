@@ -17,11 +17,10 @@ public class Insert {
             String user = "root";
             String pass = "root";
           myConnection = DriverManager.getConnection(url, user,pass);
-          String sql = "Insert into sakila.actor(actor_id,first_name,last_name) values (?,?,?)";
+          String sql = "Insert into sakila.actor(first_name,last_name) values (?,?)";
           myStatement = myConnection.prepareStatement(sql);
-          myStatement.setInt(1, 999);
-          myStatement.setString(2, "Pepito");
-          myStatement.setString(3, "Perez-");
+          myStatement.setString(1, "Pepito2");
+          myStatement.setString(2, "Perez-2");
 
           int rowsAffected = myStatement.executeUpdate();
           System.out.println("filas insertadas: "+rowsAffected);

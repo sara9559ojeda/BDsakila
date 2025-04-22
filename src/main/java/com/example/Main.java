@@ -16,7 +16,7 @@ public class Main {
           myStatement = myConnection.createStatement();
 
           int rowsAffected = myStatement.executeUpdate(
-            "Update sakila.actor set first_name = 'FranciscoR'");
+            "Update sakila.actor set first_name = 'PepitoR'");
             System.out.println("filas actualizadas:"+rowsAffected);
           myResultSet = myStatement.executeQuery("Select * from sakila.actor");
           while (myResultSet.next()) {
