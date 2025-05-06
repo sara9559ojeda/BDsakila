@@ -1,49 +1,43 @@
 package com.example;
 
-import java.util.List;
-
 import com.example.model.Actor;
 import com.example.repository.ActorRepository;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-      ActorRepository actorRepository = new ActorRepository();
+        ActorRepository repo = new ActorRepository();
 
-        
-        System.out.println("--- Listado de todos los actores ---");
-        List<Actor> allActors = actorRepository.findAll();
-        if (allActors != null) {
-            for (Actor actor : allActors) {
-                System.out.println(actor);
-            }
-        } else {
-            System.out.println("No se encontraron actores o hubo un error.");
+        // ----- PROBAR SAVE -----
+        Actor nuevoActor = new Actor();
+        nuevoActor.setFirstName("Sara");
+        nuevoActor.setLastName("Ramírez");
+        repo.save(nuevoActor);  // Debería insertar un nuevo actor
+
+        // ----- PROBAR FIND ALL -----
+        List<Actor> actores = repo.findAll();
+        System.out.println("Lista de actores:");
+        for (Actor a : actores) {
+            System.out.println(a.getActorID() + ": " + a.getFirstName() + " " + a.getLastName());
         }
 
-        System.out.println("\n--- Obtener actor por ID (ejemplo ID 1) ---");
-        Actor actor1 = actorRepository.getByID(1);
+        // ----- PROBAR GET BY ID -----
+        Actor actor1 = repo.getByID(1);  // Cambia 1 por un ID real
         if (actor1 != null) {
-            System.out.println("Actor con ID 1: " + actor1);
+            System.out.println("Actor con ID 1: " + actor1.getFirstName() + " " + actor1.getLastName());
         } else {
-            System.out.println("No se encontró el actor con ID 1.");
+            System.out.println("No se encontró actor con ID 1.");
         }
 
-        System.out.println("\n--- Obtener actor por ID (ejemplo ID inexistente) ---");
-        Actor actor999 = actorRepository.getByID(999);
-        if (actor999 != null) {
-            System.out.println("Actor con ID 999: " + actor999);
-        } else {
-            System.out.println("No se encontró el actor con ID 999.");
-        }
+        // ----- PROBAR UPDATE -----
+        Actor actualizarActor = new Actor();
+        actualizarActor.setActorID(1);  // Cambia 1 por un ID real existente
+        actualizarActor.setFirstName("Sara Actualizada");
+        actualizarActor.setLastName("Ramírez Mod");
+        repo.update(actualizarActor);  // Debería actualizar
 
-     
-      try {
-         
-          System.out.println("Conexion exitosa");
-        } catch (Exception e) {
-           System.out.println("Error Conexion");
-        }
-
+        // ----- PROBAR DELETE -----
+        repo.delete(1);  // Cambia 1 por un ID real existente que quieras borrar
 
     }
 }

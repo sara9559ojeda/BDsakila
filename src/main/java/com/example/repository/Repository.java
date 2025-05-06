@@ -8,5 +8,6 @@ public interface Repository<T>  {
     T getByID(Integer id);
     void save(T t);
     void delete(Integer id);
+    void update(T t); //toda la entidad completa
 
 }
